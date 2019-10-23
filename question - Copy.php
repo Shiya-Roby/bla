@@ -1,5 +1,5 @@
 <?php
-
+require 'dbconfi/config.php';
 $error = "";
 if(isset($_POST['submit'])){
 	if(isset($_POST['que1'],$_POST['que2'],$_POST['que3'],$_POST['que4'],$_POST['que5'],$_POST['que6'],$_POST['que7'])){
@@ -8,7 +8,8 @@ if(isset($_POST['submit'])){
 			die();
 		$string = $_POST['que1'].$_POST['que2'].$_POST['que3'].$_POST['que4'].$_POST['que5'].$_POST['que6'].$_POST['que7'];
 		print_r($string);
-
+		$query = "UPDATE signin SET profile = '$string' WHERE username = '{$_SESSION['username']}'";
+		$sth = mysqli_query($con,$query);
 	}
 	else{
 		$error ="Choose one option for all questions";
@@ -45,7 +46,7 @@ body {
 <BR><BR><BR>
 
 
-2: I feel I’m living a well-balanced life (academic, relationships, personal growth, interests/hobbies)
+2: I feel Iâ€™m living a well-balanced life (academic, relationships, personal growth, interests/hobbies)
 
 <br><input type="radio" id="one" name="que2" value="1">&nbspMostly&nbsp 
 <br><input type="radio" id="two" name="que2" value="1">&nbspRarely&nbsp
